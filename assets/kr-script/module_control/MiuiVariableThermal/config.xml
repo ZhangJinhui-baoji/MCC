@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/module_control/MiuiVariableThermal" />
+<group>
+	<switch shell="hidden" title="全局总开关">
+		<get>run get_global_main_switch.sh</get>
+		<set>run set_global_main_switch.sh</set>
+	</switch>
+</group>
+<group>
+	<action shell="hidden">
+		<title>场景温控选择</title>
+		<desc>选择一个温控档位，当触发'充电场景'或'游戏场景'时，使得系统使用该温控作为对应的'场景温控'</desc>
+			<param
+			name="on_screen"
+			required="true"
+			value-sh="sed -n 's/^thermal_scene=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="亮屏档位"
+			desc="充电速度：零档>一档>二档>三档>四档>五档">
+			<option value="0">零档-无限制（高温充电无限制+性能无限制）</option>
+			<option value="1">一档-无限制（45~55度特快充电+性能无限制）</option>
+			<option value="2">二档-无限制（40~50度快速充电+性能无限制）</option>
+			<option value="3">三档-无限制（35~45度中速充电+性能无限制）</option>
+			<option value="4">四档-无限制（30~40度慢速充电+性能无限制）</option>
+			<option value="5">五档-无限制（25~35度特慢充电+性能无限制）</option>
+			</param>
+			<param
+			name="off_screen"
+			required="true"
+			value-sh="sed -n 's/^thermal_scene=[^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="息屏档位"
+			desc="充电速度：零档>一档>二档>三档>四档>五档">
+			<option value="0">零档-无限制（高温充电无限制+性能无限制）</option>
+			<option value="1">一档-无限制（45~55度特快充电+性能无限制）</option>
+			<option value="2">二档-无限制（40~50度快速充电+性能无限制）</option>
+			<option value="3">三档-无限制（35~45度中速充电+性能无限制）</option>
+			<option value="4">四档-无限制（30~40度慢速充电+性能无限制）</option>
+			<option value="5">五档-无限制（25~35度特慢充电+性能无限制）</option>
+			</param>
+			<set>run set_thermal_scene.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_thermal_scene.sh" />
+	</action>
+</group>
+<group>
+	<switch shell="hidden" title="充电场景">
+		<get>run get_thermal_charge.sh</get>
+		<set>run set_thermal_charge.sh</set>
+	</switch>
+	<action shell="hidden">
+		<title>指定时间段</title>
+		<desc>当触发'充电场景'且在指定时间段时，则自动切换到指定档位的'场景温控'，离开指定时间段时，则自动恢复原来档位的'场景温控'</desc>
+			<param name="switch" label="时段开关" type="switch" />
+			<param
+			name="start_time"
+			type="seekbar"
+			min="0"
+			max="23"
+			value-sh="sed -n 's/^thermal_scene_time=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="开始时间"
+			desc="">
+			</param>
+			<param
+			name="end_time"
+			type="seekbar"
+			min="0"
+			max="23"
+			value-sh="sed -n 's/^thermal_scene_time=[^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="结束时间"
+			desc="">
+			</param>
+			<param
+			name="temperature_control_gear"
+			required="true"
+			value-sh="sed -n 's/^thermal_scene_time=[^[:blank:]]* [^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="温控档位"
+			desc="充电速度：零档>一档>二档>三档>四档>五档">
+			<option value="0">零档-无限制（高温充电无限制+性能无限制）</option>
+			<option value="1">一档-无限制（45~55度特快充电+性能无限制）</option>
+			<option value="2">二档-无限制（40~50度快速充电+性能无限制）</option>
+			<option value="3">三档-无限制（35~45度中速充电+性能无限制）</option>
+			<option value="4">四档-无限制（30~40度慢速充电+性能无限制）</option>
+			<option value="5">五档-无限制（25~35度特慢充电+性能无限制）</option>
+			</param>
+			<set>run set_thermal_scene_time.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_thermal_scene_time.sh" />
+	</action>
+</group>
+<group>
+	<switch shell="hidden" title="游戏场景">
+		<get>run get_thermal_app.sh</get>
+		<set>run set_thermal_app.sh</set>
+	</switch>
+	<action shell="hidden">
+		<title>锁定屏幕刷新率</title>
+		<desc>填写本机支持的屏幕刷新率，填错无效，当触发'游戏场景'时，则锁定屏幕刷新率，离开'游戏场景'时，则自动解除锁定</desc>
+			<param name="switch" label="锁定屏幕刷新率开关" type="switch" />
+			<param
+			name="game_scenes"
+			type="seekbar"
+			min="0"
+			max="120"
+			value-sh="sed -n 's/^fps=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="游戏场景"
+			desc="本功能无法解决游戏内锁帧问题（一般是因为joyose云控），你需要找'去除云控锁帧'的方法解决">
+			</param>
+			<param
+			name="ordinary_scenes"
+			type="seekbar"
+			min="0"
+			max="120"
+			value-sh="sed -n 's/^fps=[^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="普通场景"
+			desc="本功能无法解决游戏内锁帧问题（一般是因为joyose云控），你需要找'去除云控锁帧'的方法解决">
+			</param>
+			<set>run set_fps.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_fps.sh" />
+	</action>
+        <action shell="hidden">
+            <title>游戏场景应用列表</title>
+            <desc>配置(应用)列表</desc>
+            <param name="apps" type="app" title="请选择你想要配置动态调度的应用" desc="" multiple="multiple" value-sh="grep '^app_list' /data/adb/modules/MiuiVariableThermal/config.conf | grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*'" />
+            <set>run apps.sh</set>
+		<summary sh="grep '^app_list' /data/adb/modules/MiuiVariableThermal/config.conf | grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*'" />
+        </action>
+</group>
+<group>
+	<switch shell="hidden" title="开关旁路供电">
+	<desc>手动开关旁路供电（开启会永久启用旁路供电，其他旁路模式将会失效，关闭不会造成影响）</desc>
+		<get>run get_switch_bypass_power_supply.sh</get>
+		<set>run set_switch_bypass_power_supply.sh</set>
+	</switch>
+	<action shell="hidden">
+		<title>温度旁路</title>
+		<desc>当电池温度上升到填写的'开启温度'时，自动开启'MIUI旁路供电'，当电池温度再下降到填写的'关闭温度'时，才会自动关闭'MIUI旁路供电'，才会恢复其它的场景温控</desc>
+			<param
+			name="opening_temperature"
+			type="seekbar"
+			min="0"
+			max="100"
+			value-sh="sed -n 's/^bypass_supply_temp=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="开启温度"
+			desc="单位：摄氏度，建议间隔3度以上，填错无效">
+			</param>
+			<param
+			name="closing_temperature"
+			type="seekbar"
+			min="0"
+			max="100"
+			value-sh="sed -n 's/^bypass_supply_temp=[^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="关闭温度"
+			desc="单位：摄氏度，建议间隔3度以上，填错无效">
+			</param>
+			<set>run set_bypass_supply_temp.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_bypass_supply_temp.sh" />
+	</action>
+	<action shell="hidden">
+		<title>电量旁路</title>
+		<desc>当电量达到设置电量百分比以上时，自动开启'MIUI旁路供电'</desc>
+			<param name="switch" label="电量旁路开关" type="switch" />
+			<param
+			name="bypass_supply_level"
+			type="seekbar"
+			min="3"
+			max="100"
+			value-sh="sed -n 's/^bypass_supply_level=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="电量百分比"
+			desc="填写范围：大于等于3，填错无效">
+			</param>
+			<set>run set_bypass_supply_level.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/summary_bypass_supply_level.sh" />
+	</action>
+	<action shell="hidden">
+		<title>指定时间段</title>
+		<desc>若开启，则仅在指定时间段'电量旁路'有效，其它时间段'电量旁路'失效，若关闭，则全天'电量旁路'有效</desc>
+			<param name="switch" label="时段开关" type="switch" />
+			<param
+			name="start_time"
+			type="seekbar"
+			min="0"
+			max="23"
+			value-sh="sed -n 's/^bypass_level_time=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="开始时间"
+			desc="单位：整点">
+			</param>
+			<param
+			name="end_time"
+			type="seekbar"
+			min="0"
+			max="23"
+			value-sh="sed -n 's/^bypass_level_time=[^[:blank:]]* \([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="结束时间"
+			desc="单位：整点">
+			</param>
+			<set>run set_bypass_level_time.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_bypass_level_time.sh" />
+	</action>
+	<action shell="hidden">
+		<title>游戏旁路</title>
+		<desc>开启该选项后，当触发'游戏场景'时，则自动开启'MIUI旁路供电'，离开'游戏场景'时，则自动关闭'MIUI旁路供电'</desc>
+			<param
+			name="bypass_supply_app"
+			required="true"
+			value-sh="sed -n 's/^bypass_supply_app=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title=""
+			desc="除了开启和关闭'MIUI旁路供电'以外，还可以选择二至五档，分别代表当触发'游戏场景'时，则自动切换到'二至五档的场景温控'">
+			<option value="0">关闭</option>
+			<option value="1">开启</option>
+			<option value="2">二档</option>
+			<option value="3">三档</option>
+			<option value="4">四档</option>
+			<option value="5">五档</option>
+			</param>
+			<set>sed -i "s/^bypass_supply_app=.*/bypass_supply_app=$bypass_supply_app/" /data/adb/modules/MiuiVariableThermal/config.conf</set>
+		<summary sh="sed -n 's/^bypass_supply_app=0/关闭/p; s/^bypass_supply_app=1/开启/p; s/^bypass_supply_app=2/二档/p; s/^bypass_supply_app=3/三档/p; s/^bypass_supply_app=4/四档/p; s/^bypass_supply_app=5/五档/p' /data/adb/modules/MiuiVariableThermal/config.conf" />
+	</action>
+</group>
+<group>
+	<action shell="hidden">
+		<title>电流模式</title>
+		<desc>在模块温控模式下，若觉得有"旁路供电电流不够小、旁路供电电量还上涨、普通充电不够快"的问题，都可以尝试开启这个'电流模式'</desc>
+			<param name="switch" label="电流模式开关" type="switch" />
+			<param
+			name="current_max"
+			value-sh="sed -n 's/^current_max=\([^[:blank:]]*\).*/\1/p' /data/adb/modules/MiuiVariableThermal/config.conf"
+			title="部分机型开启该模式也许是正效果，也可能是负效果，各机型效果各异，不一定有效，自测"
+			desc="开启只需填写设备最大的充电电流（填写范围：>=1000000，填错无效，比如6000000为33W快充，12000000为67W快充，22000000为120W快充，不要超过设备默认的最大电流，开启无需重启）">
+			</param>
+			<set>run set_current_max.sh</set>
+		<summary sh="sh ./kr-script/module_control/MiuiVariableThermal/get_current_max.sh" />
+	</action>
+	<switch shell="hidden" title="充电电流日志">
+		<get>run get_current_txt.sh</get>
+		<set>run set_current_txt.sh</set>
+	</switch>
+</group>
+<group>
+        <page
+            config="settings.xml"
+            title="其他设置">
+        </page>
+</group>

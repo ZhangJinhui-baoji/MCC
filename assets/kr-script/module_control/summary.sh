@@ -1,0 +1,1 @@
+grep -o 'title="[^"]*"' ./kr-script/module_control/config.xml | sed 's/title="//;s/"$//' | tr '\n' ' ' | sed 's/^/当前功能：/'
