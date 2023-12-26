@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+    <resource dir="file:///android_asset/kr-script/miui" />
+    <group title="单手模式">
+        <switch shell="hidden" id="@node-handy-switch">
+            <title>单手模式</title>
+            <desc>是否启用单手模式功能</desc>
+            <get>settings get system handy_mode_state</get>
+            <set>
+                settings put system handy_mode_state 0
+                settings put system handy_mode_state $state
+            </set>
+        </switch>
+        <picker shell="hidden">
+            <title>单手模式-尺寸</title>
+            <get>settings get system handy_mode_size</get>
+            <set>settings put system handy_mode_size $state</set>
+            <options>
+                <option value="3.0">3.0英寸</option>
+                <option value="3.5">3.5英寸</option>
+                <option value="4.0">4.0英寸</option>
+                <option value="4.5">4.5英寸</option>
+                <option value="5.0">5.0英寸</option>
+                <option value="5.2">5.2英寸</option>
+                <option value="5.5">5.5英寸</option>
+                <option value="5.7">5.7英寸</option>
+            </options>
+        </picker>
+        <picker shell="hidden" value="1" reload="@node-handy-switch">
+            <title>切换显示模式</title>
+            <options>
+                <option value="1">左手</option>
+                <option value="2">右手</option>
+            </options>
+            <set>
+                settings put system handy_mode_state 0
+                settings put system handy_mode_state 1
+                am broadcast -a miui.action.handymode.changemode --ei mode $state
+            </set>
+        </picker>
+        <action
+            visible="run edge/support.sh"
+            shell="hidden">
+            <title>边缘防误触</title>
+            <summary sh="run edge/summary.sh" />
+            <param
+                title="区域大小(%)"
+                desc="系统设置里的可调节范围是20%~100%"
+                min="0" max="200" name="level" value-sh="run edge/get.sh" type="seekbar" />
+            <set>run edge/set.sh</set>
+        </action>
+    </group>
+
+    <group title="硬件">
+        <action
+            visible="run haptic/support.sh"
+            shell="hidden">
+            <title>振动反馈</title>
+            <summary sh="run haptic/summary.sh" />
+            <param
+                title="振动强度(%)"
+                desc="超过150%可能会没有明显效果"
+                min="0" max="400" name="level" value-sh="run haptic/get.sh" type="seekbar" />
+            <set>run haptic/set.sh</set>
+        </action>
+        <picker
+            visible="run ai_key/support.sh"
+            options-sh="run ai_key/options.sh"
+            shell="hidden">
+            <title>AI键事件</title>
+            <summary sh="run ai_key/summary.sh" />
+            <get>run ai_key/get.sh</get>
+            <set>run ai_key/set.sh</set>
+        </picker>
+    </group>
+
+    <group title="温控配置（Alpha版本之前）">
+        <picker
+            visible="run thermal_conf/support.sh"
+            title="温控配置切换" desc="通过Magisk模块将温控替换到系统目录(需重启手机生效)，适于710|730(g)|835|845|855(plus)、天玑820系列机型"
+            options-sh="run thermal_conf/options.sh">
+            <summary sh="run thermal_conf/summary.sh" />
+            <get>run thermal_conf/current.sh</get>
+            <set>run thermal_conf/config.sh</set>
+        </picker>
+        <picker
+            visible="run thermal_conf2/support.sh"
+            title="温控配置切换（2）" desc="将温控替换到/data/vendor/thermal，无需重启手机即可生效，适于骁龙855、865(plus)、870、888机型）"
+            options-sh="run thermal_conf2/options.sh">
+            <summary sh="run thermal_conf2/summary.sh" />
+            <get>run thermal_conf2/current.sh</get>
+            <set>run thermal_conf2/config.sh</set>
+        </picker>
+    </group>
+
+    <group title="温控配置（Alpha版本之后）" id="thermal">
+        <picker
+            visible="run thermal_conf/support.sh"
+            title="温控配置切换 - 老款SOC"
+            desc="通过Magisk模块将温控替换到系统目录(需重启手机生效)，适于710|730(g)|835|845|855(plus)、天玑820系列机型"
+            options-sh="run thermal_conf/options.sh">
+            <summary sh="run thermal_conf/summary.sh" />
+            <get>run thermal_conf/current.sh</get>
+            <set>run thermal_conf/config.sh</set>
+        </picker>
+        <picker
+            reload="thermal"
+            auto-finish="true"
+            title="温控配置切换 - 在线获取"
+            desc="替换到/data/vendor/thermal，无需重启手机立即生效。配置根据官方原版文件，由人工修改生成。"
+            options-sh="run thermal_conf3/options.sh">
+            <summary sh="run thermal_conf3/summary.sh" />
+            <get>run thermal_conf3/current.sh</get>
+            <set>run thermal_conf3/config.sh</set>
+        </picker>
+        <picker reload="thermal"
+            title="温控配置切换- 本地生成"
+            desc="替换到/data/vendor/thermal，无需重启手机立即生效。配置根据系统温控文件，由程序自动处理生成，请确保你的系统自带温控是官方原版！"
+            options-sh="curl http://127.0.0.1:8765/miui-thermal">
+            <summary sh="run thermal_conf3/summary.sh" />
+            <get>run thermal_conf3/current.sh</get>
+            <set>run thermal_conf3/config.sh local</set>
+        </picker>
+    </group>
+    <group title="锁帧">
+        <action title="去除锁帧设定">
+            <param name="mode">
+                <option value="1">仅去除锁帧</option>
+                <option value="2">去除全部定制参数</option>
+                <option value="0">还原</option>
+            </param>
+            <set>
+                joyose_db='/data/data/com.xiaomi.joyose/databases/SmartP.db'
+                if [[ ! -f "$joyose_db" ]]; then
+                  echo 'Joyose已被卸载或无数据'
+                  return
+                fi
+
+                if [[ "$mode" == "0" ]]; then
+                  pm uninstall --user 0 com.xiaomi.joyose >/dev/null
+                  pm install-existing --user 0 com.xiaomi.joyose >/dev/null
+                  if [[ -e /data/system/mcd/df ]]; then
+                    chattr -i /data/system/mcd/df
+                    rm /data/system/mcd/df
+                  fi
+                else
+                  r=$(sqlite3 $joyose_db "select params from cloud_config where config_name = 'booster_config'" | grep dynamic_fps)
+                  if [[ "$r" == "" ]]; then
+                    echo '当前设备不存在锁帧配置，无需去除'
+                    return
+                  fi
+                  echo '准备清理...'
+                  am broadcast -n com.omarea.vtools/com.omarea.vtools.ReceiverJoyoseClear --es mode "$mode" > /dev/null
+                  sleep 1
+                  am force-stop com.xiaomi.joyose
+                  echo ''
+                  if [[ -e /data/system/mcd/df ]]; then
+                    chattr -i /data/system/mcd/df
+                    rm /data/system/mcd/df
+                    echo '' > /data/system/mcd/df
+                    chattr +i /data/system/mcd/df
+                  fi
+              fi
+            </set>
+        </action>
+    </group>
+</items>
