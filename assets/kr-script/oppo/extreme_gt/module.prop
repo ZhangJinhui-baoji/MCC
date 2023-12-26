@@ -1,0 +1,7 @@
+id=extreme_gt
+name=Extreme GT
+version=2.1.3
+versionCode=2103
+author=嘟嘟ski & SCENE
+description=本模块由SCENE生成，用于去除OPPO、Realme、OnePlus机型的锁帧和部分温控限制
+minMagisk=17000

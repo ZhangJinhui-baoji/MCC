@@ -1,0 +1,6 @@
+id=scene_resurgence
+name=系统自救
+version=1.0.0
+versionCode=1
+description=由Scene创建的系统自救模块，它会尝试帮你在系统启动失败时，自动修复一般程度的错误
+author=嘟嘟ski
