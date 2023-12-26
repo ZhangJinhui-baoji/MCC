@@ -7,27 +7,33 @@ APP是由helloklf（酷安：嘟嘟斯基）提供的PIO框架二次创作而来
 ## 功能介绍
 
 ASGuard
+
 用来控制ASGuard模块配置文件，模块作者：huzesama，此功能的代码也来自模块作者。
 
 项目链接：https://github.com/huzesama/ASGuard
 
 Uperf、Dfps、Qti
+
 用来控制这三个模块的配置文件，这三个模块作者均来自同一人，模块作者：yc9559
 
 https://github.com/yc9559
 
 FEAS、FAS-RS
+
 用来控制这两个模块的配置文件，这两个模块作者也是同一人，FEAS模块发布在酷安。Uperf patch模块作者也是他，属于二次修改的Uperf，为了不让Uperf和FAS-RS冲突，作者：shadow3aaa
 
 https://github.com/shadow3aaa
 
 QSC定量停充、MIUI动态温控
+
 用来控制这两个模块配置文件，这两个模块作者来自，酷安：top大佬，这里不做描述了，具体可以去酷安查看。
 
 旁路充电
+
 用来控制这个模块的配置文件，这个模块的作者也来自酷安。
 
 附加功能
+
 此功能所有的代码均来自Scene
 
 ## 其他相关
