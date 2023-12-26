@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <resource dir="file:///android_asset/kr-script/developer" />
+
+    <group>
+        <action>
+            <title>日志转储</title>
+            <desc>logcat -d 到指定到位置</desc>
+            <param name="path" value="/sdcard/logcat.log" />
+            <set>
+                p="$path"
+                if [[ "$p" == "" ]]; then
+                p="/sdcard/logcat.log"
+                fi
+                if [[ -f "$p" ]]; then
+                rm "$p"
+                fi
+                logcat -d > "$p"
+                if [[ -f "$p" ]]; then
+                echo '日志已转储到 ' $p
+                fi
+            </set>
+        </action>
+        <action>
+            <title>清logcat缓冲区</title>
+            <desc>清空logcat缓冲区，以便于重新开始抓取错误</desc>
+            <set>
+                logcat -c
+            </set>
+        </action>
+        <switch id="developer_remote_adb">
+            <title>远程ADB调试</title>
+            <desc>开启设备的网络调试端口，方便开发人员免数据线连接电脑，千万不要在公共WIFI网络环境下开启本选项！</desc>
+            <summary sh="run adb_remote_summary.sh" />
+            <get>run adb_remote_get.sh</get>
+            <set>run adb_remote_set.sh</set>
+        </switch>
+        <switch id="developer_error_dialog" shell="hidden">
+            <title>隐藏错误弹窗</title>
+            <desc>不要显示应用崩溃和未响应弹窗</desc>
+            <get>run hide_errordialog_get.sh</get>
+            <set>run hide_errordialog_set.sh</set>
+        </switch>
+        <switch id="developer_anr" shell="hidden">
+            <title>一律显示崩溃对话框</title>
+            <desc>在每次应用崩溃时显示对话框</desc>
+            <get>settings get secure show_first_crash_dialog_dev_option</get>
+            <set>settings put secure show_first_crash_dialog_dev_option $state</set>
+        </switch>
+        <switch id="developer_anr" shell="hidden">
+            <title>显示后台应用未响应</title>
+            <desc>为后台应用程序显示“应用程序未响应（ANR）”对话框</desc>
+            <get>run anr_get.sh</get>
+            <set>run anr_set.sh</set>
+        </switch>
+        <switch id="show_touches" shell="hidden">
+            <title>显示触摸反馈</title>
+            <desc>触摸屏幕时显示小圆点</desc>
+            <get>settings get system show_touches</get>
+            <set>settings put system show_touches $state</set>
+        </switch>
+        <switch
+            visible="if [[ `getprop persist.vtools.ext_all` != '1' ]]; then echo 1; fi"
+            shell="hidden"
+            reload="page"
+            warning="使用需要修改系统文件的功能，可能会由于兼容性或异常导致系统损坏，并且无法通过恢复出厂设置还原。确定要继续使用这些功能吗？">
+            <title>显示危险功能</title>
+            <desc>显示需要修改系统文件的功能</desc>
+            <set>setprop persist.vtools.ext_all $state</set>
+            <get>getprop persist.vtools.ext_all</get>
+        </switch>
+        <switch
+            id="dangerous_features"
+            visible="getprop persist.vtools.ext_all"
+            shell="hidden"
+            reload="page">
+            <title>显示危险功能</title>
+            <desc>显示需要修改系统文件的功能</desc>
+            <set>setprop persist.vtools.ext_all $state</set>
+            <get>getprop persist.vtools.ext_all</get>
+        </switch>
+        <switch id="force_resize" visible="sh ./kr-script/common/android_n.sh" shell="hidden">
+            <title>强制分屏</title>
+            <desc>适用于Android 7.0+，同开发者设置中的“强制将Activity设为可调整大小”选项。开启此项，从而对声明支持分屏的应用进行分屏操作！</desc>
+            <get>run general/force_resize_get.sh</get>
+            <set>run general/force_resize_set.sh</set>
+        </switch>
+    </group>
+
+    <group title="实验性">
+        <picker value=" "
+            target-sdk="29"
+            auto-off="true"
+            visible=". ./kr-script/common/android_q.sh">
+            <title>沙箱机制</title>
+            <desc>开启沙箱后，所有应用程序将无法访问本机存储根目录（而不仅限于TargetAPI >= Q的应用）</desc>
+            <options>
+                <option value="default">默认</option>
+                <option value="on">开启</option>
+                <option value="off">关闭</option>
+            </options>
+            <set>
+                if [[ $state ]]; then
+                echo '设备将在5秒重启~'
+                sleep 5
+                sm set-isolated-storage $state
+                fi
+            </set>
+        </picker>
+        <action min-sdk="26" max-sdk="33">
+            <title>HWUI渲染引擎</title>
+            <desc>切换HWUI渲染引擎，本功能仅支持Android O(8.x)、Android P(9.0)</desc>
+            <summary sh="run hwui_render/summary.sh" />
+            <param name="renderer"
+                options-sh="run hwui_render/options.sh"
+                value-sh="run hwui_render/get.sh" />
+            <set>run hwui_render/set.sh</set>
+        </action>
+        <switch min-sdk="29" confirm="true">
+            <title>HWUI使用Vulkan</title>
+            <desc>使用基于Vulkan的HWUI渲染引擎，这是Android Q的新特性，已知会导致“播放视频”严重卡顿，部分软件偶尔未响应。有些手机甚至可能无法进入桌面！</desc>
+            <get>run hwui_vulkan/get.sh</get>
+            <set>run hwui_vulkan/set.sh</set>
+        </switch>
+    </group>
+
+    <group title="其它入口">
+        <page activity="com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS" title="开发者选项" />
+        <page activity="com.android.settings/.RunningServices" title="运行中的服务" />
+        <page activity="com.android.settings/.Settings$MemorySettingsActivity" title="内存使用情况" />
+    </group>
+
+    <group title="刘海屏">
+        <action>
+            <title>假装无缺口</title>
+            <desc>如果你经常困扰于屏幕顶部出现留空的黑色区域，或玩游戏时屏幕左侧不全屏，那这个功能也许能帮到你</desc>
+            <param name="type" value="hole" title="缺口形态">
+                <option value="hole">居中打孔屏</option>
+            </param>
+            <param name="os" title="适用系统" value-sh="getprop ro.build.version.sdk">
+                <option value="31">Android 12(SDK31)</option>
+            </param>
+            <set>
+                run notch/apply.sh
+            </set>
+        </action>
+    </group>
+
+    <group title="系统更新"
+        visible-sh="binary_exist update_engine_client">
+        <action
+            interruptible="false"
+            warn="不支持增量包更新。全量更新完之后，ROOT会丢失，需要自行重新获取ROOT权限。由于不正确操作或【意外】导致的损失，需自行承担！！！">
+            <title>安装OTA更新</title>
+            <desc>适用于A/B(含VAB)分区设备的手动安装更新</desc>
+            <summary>注意：这是试验性功能，可能导致系统/设备损坏！</summary>
+            <params>
+                <param title="ROM文件路径"
+                    name="rom"
+                    editable="false"
+                    type="file"
+                    suffix="zip"
+                    required="true" />
+            </params>
+            <set>
+                run ab_updater.sh
+            </set>
+        </action>
+    </group>
+</root>
