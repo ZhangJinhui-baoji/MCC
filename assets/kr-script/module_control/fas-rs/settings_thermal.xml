@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group>
+	<action shell="hidden">
+		<title>powersave_thermal</title>
+		<desc>省电模式温控</desc>
+		<param
+			name="powersave_thermal"
+			title="对应模式触发温控限制的电池温度"
+			desc="单位：摄氏度"
+			type="seekbar"
+			min="1"
+			max="100"
+			value-sh="sh ./kr-script/module_control/fas-rs/get_powersave_thermal.sh"/>
+		<set>run set_powersave_thermal.sh</set>
+		<summary sh="sh ./kr-script/module_control/fas-rs/get_powersave_thermal.sh" />
+	</action>
+<action shell="hidden">
+		<title>balance_thermal</title>
+		<desc>均衡模式温控</desc>
+		<param
+			name="balance_thermal"
+			title="对应模式触发温控限制的电池温度"
+			desc="单位：摄氏度"
+			type="seekbar"
+			min="1"
+			max="100"
+			value-sh="sh ./kr-script/module_control/fas-rs/get_balance_thermal.sh"/>
+		<set>run set_balance_thermal.sh</set>
+		<summary sh="sh ./kr-script/module_control/fas-rs/get_balance_thermal.sh" />
+	</action>
+	<action shell="hidden">
+		<title>performance_thermal</title>
+		<desc>性能模式温控</desc>
+		<param
+			name="performance_thermal"
+			title="对应模式触发温控限制的电池温度"
+			desc="单位：摄氏度"
+			type="seekbar"
+			min="1"
+			max="100"
+			value-sh="sh ./kr-script/module_control/fas-rs/get_performance_thermal.sh"/>
+		<set>run set_performance_thermal.sh</set>
+		<summary sh="sh ./kr-script/module_control/fas-rs/get_performance_thermal.sh" />
+	</action>
+	<action shell="hidden">
+		<title>fast_thermal</title>
+		<desc>极速模式温控</desc>
+		<param
+			name="fast_thermal"
+			title="对应模式触发温控限制的电池温度"
+			desc="单位：摄氏度"
+			type="seekbar"
+			min="1"
+			max="100"
+			value-sh="sh ./kr-script/module_control/fas-rs/get_fast_thermal.sh"/>
+		<set>run set_fast_thermal.sh</set>
+		<summary sh="sh ./kr-script/module_control/fas-rs/get_fast_thermal.sh" />
+	</action>
+</group>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/module_control/fas-rs" />
+<group>
+	<action shell="hidden">
+		<title>全局默认模式</title>
+		<desc>设置全局默认规则</desc>
+		<param name="default_mode" value-sh="sh ./kr-script/module_control/fas-rs/default_mode.sh" required="true" title="#powersave：省电模式&#13;&#10;#balance：均衡模式&#13;&#10;#performance：性能模式&#13;&#10;#fast：极速模式">
+			<option value="powersave">省电模式</option>
+			<option value="balance">均衡模式</option>
+			<option value="performance">性能模式</option>
+			<option value="fast">极速模式</option>
+		</param>
+		<set>
+			echo "${default_mode}" > /dev/fas_rs/mode
+		</set>
+		<summary sh="sh ./kr-script/module_control/fas-rs/default_mode.sh" />
+	</action>
+</group>
+<group>
+	<switch shell="hidden" title="keep_std">
+	<desc>配置合并</desc>
+	<summary sh="sh ./kr-script/module_control/fas-rs/summary_keep_std.sh" />
+		<get>run get_keep_std.sh</get>
+		<set>run set_keep_std.sh</set>
+	</switch>
+</group>
+<group id="app_list">
+        <action shell="hidden" reload="app_list">
+            <title>应用列表配置</title>
+            <desc>配置(应用)名单</desc>
+            <param name="apps" type="app" title="请选择你想要配置的应用，选择后使用下一个功能进行配置。" desc="点击确定后其它应用的配置可能会被清除，需要重新配置。" multiple="multiple" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' $fas_path/games.toml" />
+            <set>run apps.sh</set>
+		<summary sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' $fas_path/games.toml" />
+        </action>
+        <action reload="app_list" shell="hidden">
+            <title>设置应用配置</title>
+            <desc>先使用上面的功能添加包名，然后再进行设置</desc>
+            <params>
+                <param name="app_package_name" title="选择应用包名"
+                    options-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' $fas_path/games.toml" />
+            <param
+                name="target_fps"
+                title="应用运行的目标fps"
+                desc="刷新率可以是一个数组（如：[30, 60, 120, 144]）或者单个整数, 表示游戏会渲染到的目标帧率，FAS-RS会在运行时动态匹配">
+            </param>
+            </params>
+            <set>run set_rules.sh</set>
+        <summary sh="grep -E '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' $fas_path/games.toml" />
+        </action>
+</group>
+<group>
+        <page
+            config="settings.xml"
+            title="其他设置">
+        </page>
+</group>
