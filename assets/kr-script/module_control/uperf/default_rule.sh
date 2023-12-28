@@ -1,0 +1,1 @@
+sed -i "s/^\* .*/\* $default_rule/" $uperf_path/perapp_powermode.txt
