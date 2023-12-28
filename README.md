@@ -32,10 +32,6 @@ QSC定量停充、MIUI动态温控
 
 用来控制这个模块的配置文件，这个模块的作者也来自酷安。
 
-附加功能
-
-此功能所有的代码均来自Scene
-
 ## 其他相关
 PIO框架：https://github.com/helloklf/kr-scripts
 
