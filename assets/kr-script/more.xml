@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages>
+    <resource dir="file:///android_asset/kr-script/module_control" />
+    <group>
+        <page
+            config="module_control/about/config.xml"
+            icon="kr-script/icons/mcc.png"
+            desc=""
+            title="关于软件">
+        </page>
+    </group>
+</pages>
