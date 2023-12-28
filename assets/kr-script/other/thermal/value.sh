@@ -1,1 +1,0 @@
-find -L /system -name "*thermal*" | egrep -v ".so$" | egrep -v ".qti"

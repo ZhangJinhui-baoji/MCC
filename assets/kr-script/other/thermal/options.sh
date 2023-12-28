@@ -1,1 +1,0 @@
-find -L /system -name "*thermal*" 2> /dev/null
