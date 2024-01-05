@@ -32,6 +32,16 @@ QSC定量停充、MIUI动态温控
 
 用来控制这个模块的配置文件，这个模块的作者也来自酷安。
 
+A1内存管理
+
+用来控制此模块的配置文件，作者：OneB1ank
+模块项目地址：
+https://github.com/OneB1ank/A1Memory
+
+运存防线
+
+用来控制此模块的配置文件，作者：酷安 l奋斗的小青年
+
 ## 其他相关
 PIO框架：https://github.com/helloklf/kr-scripts
 
