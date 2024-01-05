@@ -93,3 +93,22 @@
             <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
         </page>
     </group>
+
+<group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="A1Memory"
+            config="A1Memory/config.xml"
+            desc="运行在Android的第三方内存管理，可减少应用使用运行内存" title="A1内存管理">
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="ram"
+            config="ram/config.xml"
+            desc="当手机RAM可用内存低于6%时。自动触发，killing你最早打开的APP(默认排除系统应用和微信，以及白名单等APP)。由远及近，直到可用RAM大于6%才停止。确保你手机始终流畅运行" title="运存防线">
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
