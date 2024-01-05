@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<group>
+<group title="模块与作者">
     <!--<action interruptible="false">
         <title>[Magisk] FAS-RS v1.4.5</title>
         <desc>模块配置目录：/sdcard/Android/magisk/fas-rs</desc>
@@ -19,7 +19,7 @@
     <action
         shell="hidden"
         desc="点击打开模块作者的酷安主页"
-        title="模块作者：酷安 @shadow3">
+        title="酷安：@shadow3">
         <set>run coolapk.sh</set>
     </action>
 </group>

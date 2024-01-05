@@ -41,7 +41,8 @@
             <param
                 name="target_fps"
                 title="应用运行的目标fps"
-                desc="刷新率可以是一个数组（如：[30, 60, 120, 144]）或者单个整数, 表示游戏会渲染到的目标帧率，FAS-RS会在运行时动态匹配">
+                desc="刷新率可以是一个数组（如：[30, 60, 120, 144]）或者单个整数, 表示游戏会渲染到的目标帧率，FAS-RS会在运行时动态匹配"
+                value-sh="echo [30, 60, 90, 120]">
             </param>
             </params>
             <set>run set_rules.sh</set>
