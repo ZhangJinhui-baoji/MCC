@@ -5,7 +5,7 @@ latest_release=$(curl -s "https://api.github.com/repos/$repository/releases/late
 if [ -z "$latest_release" ]; then
     echo "无法获取发行版信息"
 else
-    current_version="2023.12.28"
+    current_version="2024.1.5"
     if [ "$latest_release" != "$current_version" ]; then
         echo "发现新的发行版: $latest_release"
     else
