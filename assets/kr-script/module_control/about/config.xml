@@ -3,6 +3,16 @@
 
     <group>
         <page
+            link="https://h5.cloud.189.cn/share.html#/t/fyaqUnzA7Nzy"
+            icon="kr-script/icons/mcc.png"
+            summary-sh="run update.sh"
+            desc="密码：zpk9"
+            title="下载更新">
+        </page>
+    </group>
+
+    <group>
+        <page
             link="https://github.com/ZhangJinhui-baoji/MCC"
             icon="kr-script/icons/github.png"
             desc="点击进入GitHub"
@@ -32,7 +42,7 @@
             shell="hidden"
             icon="kr-script/icons/qq.png"
             desc="QQ群号：979817842"
-            title="有兴趣可以加入群聊，大家一起玩机">
+            title="有兴趣可以加入群聊一起搞机">
         <set>run qq.sh</set>
         </action>
         <page
