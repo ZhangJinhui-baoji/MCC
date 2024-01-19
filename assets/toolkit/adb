@@ -1,0 +1,8 @@
+export HOME="$START_DIR/kr-script/adb_tool"
+work_path="$HOME/.android"
+     if [[ ! -d "$work_path" ]]; then
+        mkdir -p "$work_path"
+        chown $APP_USER_ID:$APP_USER_ID "$work_path"
+     fi
+
+exec "$START_DIR/kr-script/adb_tool/adb" "$@"
