@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource dir="file:///android_asset/kr-script/module_control/about" />
 
-    <group>
-        <page
-            link="https://h5.cloud.189.cn/share.html#/t/fyaqUnzA7Nzy"
+    <group title="关于软件">
+        <action
+            shell="hidden"
             icon="kr-script/icons/mcc.png"
-            summary-sh="run update.sh"
-            desc=""
-            title="MCC模块配置控制">
-        </page>
-    </group>
-
-    <group>
-        <page
-            link="https://github.com/ZhangJinhui-baoji/MCC"
+            desc="点击进入网盘"
+            title="MCC模块配置控制"
+            warning="点击确定可前往网盘进行下载（网盘密码：zpk9）&#13;&#10;或前往GitHub进行下载（可能需要魔法上网）">
+            <set>am start -a android.intent.action.VIEW -d "https://h5.cloud.189.cn/share.html#/t/fyaqUnzA7Nzy"</set>
+        </action>
+        <action
+            shell="hidden"
             icon="kr-script/icons/github.png"
             desc="点击进入GitHub"
-            title="源代码项目地址">
-        </page>
+            title="源代码项目地址"
+            warning="点击确定进入GitHub（可能需要魔法上网）">
+            <set>am start -a android.intent.action.VIEW -d "https://github.com/ZhangJinhui-baoji/MCC"</set>
+        </action>
     </group>
 
-    <group>
+    <group title="软件作者">
         <action
             shell="hidden"
             icon="kr-script/icons/coolapk.png"
@@ -36,19 +36,14 @@
         <set>run coolapk_frame.sh</set>
         </action>
     </group>
-
-    <group>
-        <action
-            shell="hidden"
-            icon="kr-script/icons/qq.png"
-            desc="QQ群号：979817842"
-            title="有兴趣可以加入群聊一起搞机">
-        <set>run qq.sh</set>
-        </action>
-        <page
-            link="https://qr.alipay.com/fkx19197qomydskfpxws170?t=1703521412192"
-            icon="kr-script/icons/AlipayGphone.png"
-            desc="如果觉得不错，可以打赏作者一包辣条"
-            title="打赏软件作者">
-        </page>
-    </group>
+    <text>
+        <slices>
+        <slice align="center" break="true" bold="true" size="20" color="#ff0000">作者告知</slice>
+        </slices>
+    </text>
+    <text>
+        <title>更新日志</title>
+    </text>
+    <text>
+        <summary sh="run update_log.sh" />
+    </text>
