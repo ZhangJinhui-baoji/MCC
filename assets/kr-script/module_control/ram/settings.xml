@@ -18,7 +18,7 @@
 <group title="">
 	<action>
 		<title>运存防线检测</title>
-		<set>run summary.sh</set>
+		<set>run set.sh</set>
 	</action>
 	<action>
 		<title>查看白名单文件</title>

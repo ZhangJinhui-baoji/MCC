@@ -1,4 +1,4 @@
-module_prop="/data/adb/modules/ram/module.prop"
+module_prop="/data/adb/modules/qti-mem-opt/module.prop"
 
 if [ -f "$module_prop" ]; then
     installed_version=$(grep '^version=' "$module_prop" | cut -d'=' -f2)
