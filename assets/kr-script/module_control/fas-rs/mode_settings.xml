@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group>
+	<action shell="hidden">
+		<title>省电模式</title>
+		<desc></desc>
+			<param
+			name="fas_boost"
+			value-sh="run value_powersave_fas_boost.sh"
+			label="fas_boost"
+			title="开启为减少掉帧，关闭为限制功耗"
+			desc=""
+			type="switch" />
+			<param
+			name="scale"
+			value-sh="run value_powersave_scale.sh"
+			label="scale"
+			title="可以容忍的掉帧数"
+			desc="" />
+			<param
+			name="jank_scale"
+			value-sh="run value_powersave_jank_scale.sh"
+			label="jank"
+			title="判定小卡顿的掉帧数"
+			desc="" />
+			<param
+			name="big_jank_scale"
+			value-sh="run value_powersave_big_jank_scale.sh"
+			label="big"
+			title="判定大卡顿的掉帧数"
+			desc="" />
+			<param
+			name="use_performance_governor"
+			value-sh="run value_powersave_use_performance_governor.sh"
+			label="use_performance_governor"
+			title="使用performance内核cpufreq策略（fas_boost开启时此配置无效）"
+			desc=""
+			type="switch" />
+			<set>run set_powersave.sh</set>
+		<summary sh="sed -n '/\[powersave\]/,/\[balance\]/{/\[powersave\]/!{/\[balance\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+	</action>
+</group>
+<group>
+	<action shell="hidden">
+		<title>均衡模式</title>
+		<desc></desc>
+			<param
+			name="fas_boost"
+			value-sh="run value_balance_fas_boost.sh"
+			label="fas_boost"
+			title="开启为减少掉帧，关闭为限制功耗"
+			desc=""
+			type="switch" />
+			<param
+			name="scale"
+			value-sh="run value_balance_scale.sh"
+			label="scale"
+			title="可以容忍的掉帧数"
+			desc="" />
+			<param
+			name="jank_scale"
+			value-sh="run value_balance_jank_scale.sh"
+			label="jank"
+			title="判定小卡顿的掉帧数"
+			desc="" />
+			<param
+			name="big_jank_scale"
+			value-sh="run value_balance_big_jank_scale.sh"
+			label="big"
+			title="判定大卡顿的掉帧数"
+			desc="" />
+			<param
+			name="use_performance_governor"
+			value-sh="run value_balance_use_performance_governor.sh"
+			label="use_performance_governor"
+			title="使用performance内核cpufreq策略（fas_boost开启时此配置无效）"
+			desc=""
+			type="switch" />
+			<set>run set_balance.sh</set>
+		<summary sh="sed -n '/\[balance\]/,/\[performance\]/{/\[balance\]/!{/\[performance\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+	</action>
+</group>
+<group>
+	<action shell="hidden">
+		<title>性能模式</title>
+		<desc></desc>
+			<param
+			name="fas_boost"
+			value-sh="run value_performance_fas_boost.sh"
+			label="fas_boost"
+			title="开启为减少掉帧，关闭为限制功耗"
+			desc=""
+			type="switch" />
+			<param
+			name="scale"
+			value-sh="run value_performance_scale.sh"
+			label="scale"
+			title="可以容忍的掉帧数"
+			desc="" />
+			<param
+			name="jank_scale"
+			value-sh="run value_performance_jank_scale.sh"
+			label="jank"
+			title="判定小卡顿的掉帧数"
+			desc="" />
+			<param
+			name="big_jank_scale"
+			value-sh="run value_performance_big_jank_scale.sh"
+			label="big"
+			title="判定大卡顿的掉帧数"
+			desc="" />
+			<param
+			name="use_performance_governor"
+			value-sh="run value_performance_use_performance_governor.sh"
+			label="use_performance_governor"
+			title="使用performance内核cpufreq策略（fas_boost开启时此配置无效）"
+			desc=""
+			type="switch" />
+			<set>run set_performance.sh</set>
+		<summary sh="sed -n '/\[performance\]/,/\[fast\]/{/\[performance\]/!{/\[fast\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+	</action>
+</group>
+<group>
+	<action shell="hidden">
+		<title>极速模式</title>
+		<desc></desc>
+			<param
+			name="fas_boost"
+			value-sh="run value_fast_fas_boost.sh"
+			label="fas_boost"
+			title="开启为减少掉帧，关闭为限制功耗"
+			desc=""
+			type="switch" />
+			<param
+			name="scale"
+			value-sh="run value_fast_scale.sh"
+			label="scale"
+			title="可以容忍的掉帧数"
+			desc="" />
+			<param
+			name="jank_scale"
+			value-sh="run value_fast_jank_scale.sh"
+			label="jank"
+			title="判定小卡顿的掉帧数"
+			desc="" />
+			<param
+			name="big_jank_scale"
+			value-sh="run value_fast_big_jank_scale.sh"
+			label="big"
+			title="判定大卡顿的掉帧数"
+			desc="" />
+			<param
+			name="use_performance_governor"
+			value-sh="run value_fast_use_performance_governor.sh"
+			label="use_performance_governor"
+			title="使用performance内核cpufreq策略（fas_boost开启时此配置无效）"
+			desc=""
+			type="switch" />
+			<set>run set_fast.sh</set>
+		<summary sh="sed -n '/\[fast\]/,$ { /\[fast\]/d; p; }' /sdcard/Android/fas-rs/games.toml" />
+	</action>
+</group>

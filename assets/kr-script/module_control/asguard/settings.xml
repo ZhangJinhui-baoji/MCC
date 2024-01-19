@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<group>
+<group title="模块与作者">
     <!--<action interruptible="false">
         <title>[Magisk] ASGuard v6.1</title>
         <desc>模块配置目录：/sdcard/Android/magisk/asguard</desc>
@@ -11,7 +11,7 @@
     <action
         shell="hidden"
         desc="点击打开模块作者的酷安主页"
-        title="模块作者：酷安 @沍澤venmzvi">
+        title="酷安：@沍澤venmzvi">
         <set>run coolapk.sh</set>
     </action>
 </group>
