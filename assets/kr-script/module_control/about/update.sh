@@ -5,7 +5,7 @@ latest_release=$(curl --connect-timeout 3 --max-time 5 -s "https://api.github.co
 if [ -z "$latest_release" ]; then
     echo "无法获取发行版信息"
 else
-    current_version="2024.1.4"
+    current_version="2024.1.20"
     if [ "$latest_release" != "$current_version" ]; then
         echo "*发现新版本: $latest_release"
     else
