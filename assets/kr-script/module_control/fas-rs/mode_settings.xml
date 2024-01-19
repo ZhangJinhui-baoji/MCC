@@ -36,7 +36,7 @@
 			desc=""
 			type="switch" />
 			<set>run set_powersave.sh</set>
-		<summary sh="sed -n '/\[powersave\]/,/\[balance\]/{/\[powersave\]/!{/\[balance\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+		<summary sh="sed -n '/\[powersave\]/,/\[balance\]/{/\[powersave\]/!{/\[balance\]/!p}}' $fas_path/games.toml" />
 	</action>
 </group>
 <group>
@@ -76,7 +76,7 @@
 			desc=""
 			type="switch" />
 			<set>run set_balance.sh</set>
-		<summary sh="sed -n '/\[balance\]/,/\[performance\]/{/\[balance\]/!{/\[performance\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+		<summary sh="sed -n '/\[balance\]/,/\[performance\]/{/\[balance\]/!{/\[performance\]/!p}}' $fas_path/games.toml" />
 	</action>
 </group>
 <group>
@@ -116,7 +116,7 @@
 			desc=""
 			type="switch" />
 			<set>run set_performance.sh</set>
-		<summary sh="sed -n '/\[performance\]/,/\[fast\]/{/\[performance\]/!{/\[fast\]/!p}}' /sdcard/Android/fas-rs/games.toml" />
+		<summary sh="sed -n '/\[performance\]/,/\[fast\]/{/\[performance\]/!{/\[fast\]/!p}}' $fas_path/games.toml" />
 	</action>
 </group>
 <group>
@@ -156,6 +156,6 @@
 			desc=""
 			type="switch" />
 			<set>run set_fast.sh</set>
-		<summary sh="sed -n '/\[fast\]/,$ { /\[fast\]/d; p; }' /sdcard/Android/fas-rs/games.toml" />
+		<summary sh="sed -n '/\[fast\]/,$ { /\[fast\]/d; p; }' $fas_path/games.toml" />
 	</action>
 </group>

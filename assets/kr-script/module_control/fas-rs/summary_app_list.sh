@@ -1,3 +1,3 @@
-sed -n '/\[game_list\]/,/\[powersave\]/p' /sdcard/Android/fas-rs/games.toml > /sdcard/Android/fas-rs/temporary_file
-grep -E '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' /sdcard/Android/fas-rs/temporary_file
-rm "/sdcard/Android/fas-rs/temporary_file"
+sed -n '/\[game_list\]/,/\[powersave\]/p' $fas_path/games.toml > $fas_path/temporary_file
+grep -E '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' $fas_path/temporary_file
+rm "$fas_path/temporary_file"
