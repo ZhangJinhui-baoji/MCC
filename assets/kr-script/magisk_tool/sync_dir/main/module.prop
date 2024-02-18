@@ -1,0 +1,6 @@
+id=mcc_sync_dir
+name=MCC - Sync Directory
+version=Android
+versionCode=1
+author=mcc
+description=MCC创建，把任意目录实时同步到Download文件夹

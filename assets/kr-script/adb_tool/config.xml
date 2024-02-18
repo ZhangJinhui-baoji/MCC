@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource dir="file:///android_asset/kr-script/adb_tool" />
+
+<group id="wireless_debugging" title="连接与断开">
+    <switch reload="wireless_debugging" shell="hidden" auto-off="true" interruptible="false">
+        <title>USB调试开关</title>
+        <get>settings get global adb_enabled</get>
+        <set>settings put global adb_enabled $state</set>
+    </switch>
+    <action reload="wireless_debugging">
+        <title>无线调试</title>
+        <desc>开启设备的网络调试端口</desc>
+            <summary sh="run adb_remote_summary.sh" />
+            <param name="switch" label="无线调试开关" type="switch" value-sh="run adb_remote_get.sh"/>
+            <param name="port" title="自定义端口" required="true" value="5555"/>
+            <set>run adb_remote_set.sh</set>
+    </action>
+    <action reload="wireless_debugging">
+        <title>连接无线调试</title>
+        <desc>请确保设备在同一局域网内并开启无线调试</desc>
+        <summary sh="run summary_adb.sh" />
+        <params>
+            <param name="ip" title="输入IP地址"  required="true" value-sh="run value_ip.sh"/>
+            <param name="port" title="输入端口" required="true" value-sh="run value_port.sh"/>
+        </params>
+        <set>run set_adb.sh</set>
+    </action>
+    <action reload="wireless_debugging" warning="点击确定来断开所有已连接的设备">
+        <title>断开所有ADB连接</title>
+        <set>{ adb disconnect; stop adbd; adb kill-server; rm -rf &#34;$START_DIR/kr-script/adb_tool/ip_port&#34;; } &#38;&#62;/dev/null</set>
+    </action>
+</group>
+
+<group title="运行命令">
+    <action>
+        <title>应用激活</title>
+        <set>run set_app.sh</set>
+        <params>
+            <param name="app" title="请选择应用 &amp; 功能：" options-sh="run option_app.sh" />
+        </params>
+    </action>
+    <action>
+        <title>执行命令</title>
+        <params>
+            <param name="CMD" title="输入命令点击确认即可，多行命令用键盘上的回车换行" desc="多设备连接需要在命令时指定设备ID和端口，或者切换为单设备" required="true" value-sh="cat $START_DIR/kr-script/adb_tool/shell" />
+        </params>
+        <set>run shell.sh</set>
+    </action>
+</group>
