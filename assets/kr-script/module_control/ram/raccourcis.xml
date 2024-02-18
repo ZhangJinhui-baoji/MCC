@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group>
+    <switch logo="kr-script/icons/toucher.png" id="switch_ram" shell="hidden" auto-finish="true" auto-off="true" shell="hidden" title="运存防线">
+	<desc>长按添加桌面快捷方式运存防线的总开关</desc>
+        <get>run get_ram.sh</get>
+        <set>run set_ram.sh</set>
+    </switch>
+</group>

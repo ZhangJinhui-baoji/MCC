@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="模块与作者">
+    <!--<action interruptible="false">
+        <title>[Magisk] 旁路充电 10</title>
+        <desc>模块配置目录：/data/adb/modules/Bypass_Charge</desc>
+        <set>run install_module.sh</set>
+        <params>
+            <param name="reboot" label="刷入成功自动重启" type="switch" />
+        </params>
+    </action>-->
+    <action
+        shell="hidden"
+        desc="点击打开模块作者的酷安主页"
+        title="酷安：@l奋斗的小青年">
+        <set>run coolapk.sh</set>
+    </action>
+</group>
+<group>
+        <page
+            config="raccourcis.xml"
+            title="添加快捷方式"
+            desc="在桌面添加一些快捷开关（长按进行添加）">
+        </page>
+</group>
+<group title="">
+	<action>
+		<title>运存防线检测</title>
+		<set>run set.sh</set>
+	</action>
+	<action>
+		<title>查看白名单文件</title>
+		<set>
+			if [ -f "/data/adb/modules/ram/白名单.conf" ]; then
+				cat "/data/adb/modules/ram/白名单.conf"
+			else
+				echo "没有文件"
+			fi
+		</set>
+	</action>
+	<action>
+		<title>查看阈值文件</title>
+		<set>
+			if [ -f "/data/adb/modules/ram/config.ini" ]; then
+				cat "/data/adb/modules/ram/config.ini"
+			else
+				echo "没有文件"
+			fi
+		</set>
+	</action>
+</group>
