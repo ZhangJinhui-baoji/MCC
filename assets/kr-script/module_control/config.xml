@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/module_control" />
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="asguard"
+            config="asguard/config.xml"
+            desc="无障碍服务守护" title="ASGuard"
+            summary-sh="run path/asguard_path.sh">
+            <summary sh="sh ./kr-script/module_control/asguard/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="uperf"
+            config="uperf/config.xml"
+            desc="用户空间性能控制器" title="UPERF"
+            summary-sh="run path/uperf_path.sh">
+            <summary sh="sh ./kr-script/module_control/uperf/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="dfps"
+            config="dfps/config.xml"
+            desc="动态屏幕刷新率控制器" title="DFPS"
+            summary-sh="run path/dfps_path.sh">
+            <summary sh="sh ./kr-script/module_control/dfps/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="qti"
+            config="qti/config.xml"
+            desc="内存管理优化" title="QTI"
+            summary-sh="run path/qti_path.sh">
+            <summary sh="sh ./kr-script/module_control/qti/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="asopt"
+            config="asopt/config.xml"
+            desc="Android游戏线程调整程序，适用于主流游戏以及一些小众游戏" title="A-SOUL">
+            <summary sh="sh ./kr-script/module_control/asopt/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="feas"
+            config="feas/config.xml"
+            desc="自动给配置指定的应用打开Feas，未指定的关闭" title="FEASHelper"
+            summary-sh="run path/feas_path.sh">
+            <summary sh="sh ./kr-script/module_control/feas/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="perapp-rs"
+            config="perapp-rs/config.xml"
+            desc="分app模式写入器, 按照powercfg描述, 对app进行不同的操作" title="PERAPP-RS">
+            <summary sh="sh ./kr-script/module_control/perapp-rs/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="fas-rs"
+            config="fas-rs/config.xml"
+            desc="通过某种方式监听帧变化，并且将此数据用于性能调度" title="FAS-RS"
+            summary-sh="run path/fas-rs_path.sh">
+            <summary sh="sh ./kr-script/module_control/fas-rs/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="QuantitativeStopCharging_switch"
+            config="QuantitativeStopCharging_switch/config.xml"
+            desc="到达指定电量、指定温度自动停止充电、自动恢复充电" title="QSC定量停充">
+            <summary sh="sh ./kr-script/module_control/QuantitativeStopCharging_switch/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="MiuiVariableThermal"
+            config="MiuiVariableThermal/config.xml"
+            desc="利用MIUI云温控，使充电场景、游戏场景用不同档位的快充和性能无限制，其它场景自动恢复默认温控，可配置MIUI旁路供电，可配置锁定屏幕刷新率" title="MIUI动态温控">
+            <summary sh="sh ./kr-script/module_control/MiuiVariableThermal/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+    <group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="Bypass_Charge"
+            config="Bypass_Charge/config.xml"
+            desc="主板不再向手机电池充电" title="旁路充电">
+            <summary sh="sh ./kr-script/module_control/Bypass_Charge/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
+
+<group>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="A1Memory"
+            config="A1Memory/config.xml"
+            desc="运行在Android的第三方内存管理，可减少应用使用运行内存" title="A1内存管理">
+            <summary sh="sh ./kr-script/module_control/A1Memory/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            logo="kr-script/icons/magisk.png"
+            icon="kr-script/icons/magisk.png"
+            id="ram"
+            config="ram/config.xml"
+            desc="当手机RAM可用内存低于6%时。自动触发，killing你最早打开的APP(默认排除系统应用和微信，以及白名单等APP)。由远及近，直到可用RAM大于6%才停止。确保你手机始终流畅运行" title="运存防线">
+            <summary sh="sh ./kr-script/module_control/ram/summary.sh" />
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+    </group>
