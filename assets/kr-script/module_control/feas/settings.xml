@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="模块与作者">
+    <!--<action interruptible="false">
+        <title>[Magisk] FEAS Helper v1.4.3</title>
+        <desc>模块配置目录：/sdcard/Android/magisk/feas</desc>
+        <set>run install_module_Helper.sh</set>
+        <params>
+            <param name="reboot" label="刷入成功自动重启" type="switch" />
+        </params>
+    </action>-->
+    <action
+        shell="hidden"
+        desc="点击打开模块作者的酷安主页"
+        title="酷安：@shadow3">
+        <set>run coolapk.sh</set>
+    </action>
+</group>
+<group>
+    <action shell="hidden">
+        <title>自定义配置目录</title>
+        <desc>自定义后会重定向到指定目录，不再使用我设置的目录</desc>
+        <param name="custom_path" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录&#13;&#10;禁止空格及非主流符号" desc="如果你安装的内置模块，则不需要更改，请自行根据需求更改目录" type="folder" editable="true" required="true" value-sh="cat kr-script/module_control/feas/path" />
+        <summary sh="cat kr-script/module_control/feas/path" />
+        <set>echo "$custom_path" > kr-script/module_control/feas/path</set>
+    </action>
+</group>
+<group title="">
+	<action>
+		<title>查看配置文件</title>
+		<set>
+			if [ -f "$feas_path/feas.conf" ]; then
+				cat "$feas_path/feas.conf"
+			else
+				echo "没有配置文件"
+			fi
+		</set>
+	</action>
+</group>
