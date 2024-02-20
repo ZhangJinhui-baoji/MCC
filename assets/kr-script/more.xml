@@ -49,9 +49,17 @@
             shell="hidden"
             icon="kr-script/icons/qq.png"
             warning="点击确定会跳转到QQ群资料页面"
-            desc="QQ群号：979817842"
-            title="有兴趣可以加入群聊一起搞机">
-        <set>run about/qq.sh</set>
+            desc="有兴趣可以加入群聊一起搞机"
+            title="QQ群聊">
+        <set>run about/qq_group_chat.sh</set>
+        </action>
+        <action
+            shell="hidden"
+            icon="kr-script/icons/qq_channel.png"
+            warning="点击确定会跳转到QQ频道页面"
+            desc="不想群聊也可以加入QQ频道一起讨论"
+            title="QQ频道">
+        <set>run about/qq_channel.sh</set>
         </action>
         <action
             shell="hidden"
