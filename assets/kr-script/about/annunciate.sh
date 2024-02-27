@@ -4,7 +4,7 @@ FILE_PATH="annunciate"
 
 RAW_URL="https://raw.githubusercontent.com/$USERNAME/$REPO/main/$FILE_PATH"
 
-file_content=$(curl --connect-timeout 3 --max-time 5 -s "$RAW_URL")
+file_content=$(curl --connect-timeout 1 -s "$RAW_URL")
 
 if [ -z "$file_content" ]; then
     echo "当前网络环境无法获取通告信息"
