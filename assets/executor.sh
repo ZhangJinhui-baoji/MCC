@@ -17,12 +17,25 @@ export ANDROID_UID="$({ANDROID_UID})"
 export ANDROID_SDK="$({ANDROID_SDK})"
 export SDCARD_PATH="$({SDCARD_PATH})"
 export BUSYBOX="$({BUSYBOX})"
+<<<<<<< HEAD
 #export MAGISK_PATH="$({MAGISK_PATH})"
+=======
+export MAGISK_PATH="$({MAGISK_PATH})"
+>>>>>>> 3d5473d5467456b799cb4ab541f2a58805e87f4e
 export PACKAGE_NAME="$({PACKAGE_NAME})"
 export PACKAGE_VERSION_NAME="$({PACKAGE_VERSION_NAME})"
 export PACKAGE_VERSION_CODE="$({PACKAGE_VERSION_CODE})"
 export APP_USER_ID="$({APP_USER_ID})"
+<<<<<<< HEAD
 
+=======
+export asguard_path="$(cat $START_DIR/kr-script/module_control/asguard/path)"
+export uperf_path="$(cat $START_DIR/kr-script/module_control/uperf/path)"
+export dfps_path="$(cat $START_DIR/kr-script/module_control/dfps/path)"
+export qti_path="$(cat $START_DIR/kr-script/module_control/qti/path)"
+export feas_path="$(cat $START_DIR/kr-script/module_control/feas/path)"
+export fas_path="$(cat $START_DIR/kr-script/module_control/fas-rs/path)"
+>>>>>>> 3d5473d5467456b799cb4ab541f2a58805e87f4e
 # ROOT_PERMISSION 取值为：true 或 false
 export ROOT_PERMISSION=$({ROOT_PERMISSION})
 
