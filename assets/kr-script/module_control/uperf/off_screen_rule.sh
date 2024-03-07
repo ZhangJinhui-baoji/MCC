@@ -1,1 +1,0 @@
-sed -i "s/^- .*/- $off_screen_rule/" $uperf_path/perapp_powermode.txt

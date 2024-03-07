@@ -1,1 +1,0 @@
-sed -i "/^bypass_supply_temp=.*/s/bypass_supply_temp=.*/bypass_supply_temp=$opening_temperature $closing_temperature/" /data/adb/modules/MiuiVariableThermal/config.conf
