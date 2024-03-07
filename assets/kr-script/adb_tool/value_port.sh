@@ -1,1 +1,0 @@
-grep "port" "$START_DIR/kr-script/adb_tool/ip_port" | awk -F 'port=' '{print $2}'

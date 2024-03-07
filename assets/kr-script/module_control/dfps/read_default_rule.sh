@@ -1,1 +1,0 @@
-awk '/^\*/ {sub(/^\*/, ""); print}' /sdcard/Android/yc/dfps/dfps.txt
