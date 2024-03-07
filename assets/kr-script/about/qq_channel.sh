@@ -1,3 +1,0 @@
-link="mqqapi://forward/url?src_type=web&style=default&plg_auth=1&version=1&url_prefix=aHR0cHM6Ly9xdW4ucXEuY29tL3Fxd2ViL3F1bnByby9zaGFyZT9fd3Y9MyZfd3d2PTEyOCZhcHBDaGFubmVsPXNoYXJlJmludml0ZUNvZGU9MjJiR3ZkOEJTdEQmYnVzaW5lc3NUeXBlPTkmZnJvbT0yNDY2MTAmYml6PWthJm1haW5Tb3VyY2VJZD1zaGFyZSZzdWJTb3VyY2VJZD1vdGhlcnMmanVtcHNvdXJjZT1zaG9ydHVybCMvb3V0"
-
-am start -a android.intent.action.VIEW -d "$link"
