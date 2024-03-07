@@ -1,0 +1,7 @@
+echo "Scene|Scene ADB模式"
+echo "HeiYu|黑阈"
+echo "XiaoHeiWu|小黑屋"
+echo "Shizuku"
+echo "IceBox|冰箱"
+echo "KFMark|使用快否激活器激活「快否」"
+echo "PermissionDog|权限狗 AppOps"

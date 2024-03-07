@@ -1,0 +1,1 @@
+sed -i "/^onscreen_mode/ s/= .*/= \"$onscreen_mode\"/" /sdcard/Android/perapp-rs/config.toml

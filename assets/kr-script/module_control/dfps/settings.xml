@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="模块与作者">
+    <action
+        shell="hidden"
+        desc="点击打开模块作者的酷安主页"
+        title="酷安：@yc9559">
+        <set>run coolapk.sh</set>
+    </action>
+</group>
+<group>
+	<action>
+		<title>查看配置文件</title>
+		<set>
+			if [ -f "/sdcard/Android/yc/dfps/dfps.txt" ]; then
+				cat "/sdcard/Android/yc/dfps/dfps.txt"
+			else
+				echo "没有配置文件"
+			fi
+		</set>
+	</action>
+	<action>
+		<title>查看帮助文档</title>
+		<set>
+			if [ -f "/sdcard/Android/yc/dfps/dfps_help_cn.md" ]; then
+				cat "/sdcard/Android/yc/dfps/dfps_help_cn.md"
+			else
+				echo "没有文件"
+			fi
+		</set>
+	</action>
+	<action>
+		<title>查看log</title>
+		<set>
+			if [[ -f "/sdcard/Android/yc/dfps/dfps_log.txt" ]]; then
+				cat "/sdcard/Android/yc/dfps/dfps_log.txt"
+			else
+				echo "未发现log"
+			fi
+		</set>
+	</action>
+</group>
