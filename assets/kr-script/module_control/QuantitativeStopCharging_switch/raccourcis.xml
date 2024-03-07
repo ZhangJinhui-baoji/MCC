@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group>
+	<switch logo="kr-script/icons/toucher.png" id="switch_quantitative_stop_charging" shell="hidden" auto-finish="true" auto-off="true" shell="hidden" title="定量停充">
+	<desc>长按添加桌面快捷方式定量停充的总开关</desc>
+		<get>run get_switch_quantitative_stop_charging.sh</get>
+		<set>run set_switch_quantitative_stop_charging.sh</set>
+	</switch>
+</group>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/module_control/perapp-rs" />
+<group>
+	<action shell="hidden">
+		<title>亮屏模式</title>
+		<desc>亮屏时的默认模式</desc>
+		<param name="onscreen_mode" value-sh="sh ./kr-script/module_control/perapp-rs/value_onscreen_mode.sh" required="true" title="">
+			<option value="powersave">省电模式</option>
+			<option value="balance">均衡模式</option>
+			<option value="performance">性能模式</option>
+			<option value="fast">极速模式</option>
+		</param>
+		<set>run set_onscreen_mode.sh</set>
+		<summary sh="sh ./kr-script/module_control/perapp-rs/summary_onscreen_mode.sh" />
+	</action>
+	<action shell="hidden">
+		<title>息屏模式</title>
+		<desc>关闭屏幕时切换到对应模式</desc>
+		<param name="offscreen_mode" value-sh="sh ./kr-script/module_control/perapp-rs/value_offscreen_mode.sh" required="true" title="">
+			<option value="powersave">省电模式</option>
+			<option value="balance">均衡模式</option>
+			<option value="performance">性能模式</option>
+			<option value="fast">极速模式</option>
+		</param>
+		<set>run set_offscreen_mode.sh</set>
+		<summary sh="sh ./kr-script/module_control/perapp-rs/summary_offscreen_mode.sh" />
+	</action>
+</group>
+<group>
+    <action shell="hidden">
+        <title>省电模式</title>
+        <desc>配置应用列表</desc>
+        <param name="apps" type="app" title="请选择你想要打开省电模式的应用" desc="" multiple="multiple" value-sh="run powersave.sh" />
+        <set>run set_powersave.sh</set>
+		<summary sh="run powersave.sh" />
+    </action>
+</group>
+<group>
+    <action shell="hidden">
+        <title>均衡模式</title>
+        <desc>配置应用列表</desc>
+        <param name="apps" type="app" title="请选择你想要打开均衡模式的应用" desc="" multiple="multiple" value-sh="run balance.sh" />
+        <set>run set_balance.sh</set>
+		<summary sh="run balance.sh" />
+    </action>
+</group>
+<group>
+    <action shell="hidden">
+        <title>性能模式</title>
+        <desc>配置应用列表</desc>
+        <param name="apps" type="app" title="请选择你想要打开性能模式的应用" desc="" multiple="multiple" value-sh="run performance.sh" />
+        <set>run set_performance.sh</set>
+		<summary sh="run performance.sh" />
+    </action>
+</group>
+<group>
+    <action shell="hidden">
+        <title>极速模式</title>
+        <desc>配置应用列表</desc>
+        <param name="apps" type="app" title="请选择你想要打开极速模式的应用" desc="" multiple="multiple" value-sh="run fast.sh" />
+        <set>run set_fast.sh</set>
+		<summary sh="run fast.sh" />
+    </action>
+</group>
+<group>
+        <page
+            config="settings.xml"
+            title="其他设置">
+        </page>
+</group>

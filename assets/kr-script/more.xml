@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/about" />
+<resource dir="file:///android_asset/kr-script/adb_tool" />
+<resource dir="file:///android_asset/kr-script/backup_tool" />
+<resource dir="file:///android_asset/kr-script/icons" />
+<resource dir="file:///android_asset/kr-script/magisk_tool" />
+<resource dir="file:///android_asset/kr-script/module_control" />
+<resource dir="file:///android_asset/kr-script/other_tool" />
+
+<pages>
+    <group title="附加工具">
+        <page
+            icon="kr-script/icons/wifi.png"
+            config="kr-script/adb_tool/config.xml"
+            desc="此功能建议不要在公共WiFi场合打开" title="无线调试功能">
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <page
+            icon="kr-script/icons/super_backup.png"
+            config="kr-script/backup_tool/config.xml"
+            desc="用来备份和恢复系统分区" title="系统分区">
+        </page>
+        <page
+            icon="kr-script/icons/magisk.png"
+            config="kr-script/magisk_tool/config.xml"
+            desc="通过Magisk模块的方式来实现一些功能" title="附加Magisk功能">
+        </page>
+        <page
+            icon="kr-script/icons/shell.png"
+            config="kr-script/other_tool/config.xml"
+            desc="一些其他杂七杂八的功能" title="其他功能">
+        </page>
+    </group>
+    <group title="关于和设置">
+        <page
+            config="about/config.xml"
+            icon="kr-script/icons/mcc.png"
+            summary-sh="run about/update.sh"
+            desc=""
+            title="关于软件">
+            <option type="refresh" style="fab" icon="kr-script/icons/refresh.png">刷新</option>
+        </page>
+        <picker shell="hidden" icon="kr-script/icons/setting.png" multiple="multiple" separator=",">
+            <title>控制器主页设置</title>
+            <desc>可以用来隐藏你不需要的功能</desc>
+            <options>
+                <option value="asguard">ASGuard</option>
+                <option value="uperf">UPERF</option>
+                <option value="dfps">DFPS</option>
+                <option value="qti">QTI</option>
+                <option value="asopt">A-SOUL</option>
+                <option value="feas">FEASHelper</option>
+                <option value="perapp-rs">PERAPP-RS</option>
+                <option value="fas-rs">FAS-RS</option>
+                <option value="QuantitativeStopCharging_switch">QSC定量停充</option>
+                <option value="MiuiVariableThermal">MIUI动态温控</option>
+                <option value="Bypass_Charge">旁路充电</option>
+                <option value="A1Memory">A1内存管理</option>
+                <option value="ram">运存防线</option>
+            </options>
+            <get>ls /data/data/module.config.control/files/kr-script/module_control/visible/* | xargs -n1 basename | tr '\n' ','</get>
+            <set>run about/visible_set.sh</set>
+            <summary sh="sh ./kr-script/about/visible.sh" />
+        </picker>
+    </group>
+</pages>
+    <group title="交流和打赏">
+        <action
+            shell="hidden"
+            icon="kr-script/icons/qq.png"
+            warning="点击确定会跳转到QQ群资料页面"
+            desc="有兴趣可以加入群聊一起搞机"
+            title="QQ群聊">
+        <set>run about/qq_group_chat.sh</set>
+        </action>
+        <action
+            shell="hidden"
+            icon="kr-script/icons/qq_channel.png"
+            warning="点击确定会跳转到QQ频道页面"
+            desc="不想群聊也可以加入QQ频道一起讨论"
+            title="QQ频道">
+        <set>run about/qq_channel.sh</set>
+        </action>
+        <action
+            shell="hidden"
+            icon="kr-script/icons/AlipayGphone.png"
+            warning="点击确定会跳转到支付宝转账页面"
+            desc="如果觉得不错，可以打赏作者一包辣条"
+            title="打赏软件作者">
+        <set>run about/alipaygphone.sh</set>
+        </action>
+    </group>
+    <text>
+        <slices>
+        <slice align="center" break="true" bold="true" size="20" color="#ff0000">作者告知</slice>
+        <slice align="right" color="#5500ff" size="12" run="am force-stop $PACKAGE_NAME;am start -n $PACKAGE_NAME/$PACKAGE_NAME.SplashActivity">重启软件</slice>
+        </slices>
+    </text>
+    <text>
+        <title>通告</title>
+    </text>
+    <text>
+        <summary sh="run about/annunciate.sh" />
+    </text>

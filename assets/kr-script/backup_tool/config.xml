@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource dir="file:///android_asset/kr-script/backup_tool" />
+<group title="备份">
+    <action interruptible="false">
+        <title>提取分区文件</title>
+        <desc>可用于备份和提取系统分区img文件</desc>
+        <set>run mirror_partition_extract.sh</set>
+        <params>
+            <param name="img" title="请选择分区支持多选：" multiple="true" options-sh="run block_device_name.sh" required="true"/>
+            <param name="extract" type="folder" editable="true" required="true" title="可输入img文件绝对路径，也可以使用文件选择器选择文件" value-sh="dir=$START_DIR/kr-script/backup_tool/img_extract_dir; if [[ -f $dir ]]; then cat $dir; else echo /sdcard; fi " required="true" />
+        </params>
+    </action>
+</group>
+<group title="刷入">
+    <action auto-off="false" interruptible="false">
+        <title>刷入分区文件</title>
+        <desc>可用于刷写和恢复系统分区img文件</desc>
+        <set>run mirror_partition_brush_in.sh</set>
+        <params>
+            <param name="reboot_system" label="刷入后自动重启系统" type="checkbox" />
+            <param name="reboot_recovery" label="刷入后自动重启至Recovery" type="checkbox" />
+            <param name="img" title="注：要刷入的镜像大小不能大于显示的大小" options-sh="run block_device_name.sh" required="true"/>
+            <param name="brush_in" type="file" suffix="img" editable="true" required="true" title="可输入img文件绝对路径，也可以使用文件选择器选择文件" required="true" />
+        </params>
+    </action>
+</group>
+    <text>
+        <slices>
+        <slice align="center" break="true" bold="true" size="20" color="#ff0000">请谨慎操作</slice>
+        </slices>
+    </text>
+    <text>
+        <slices>
+        <slice size="15" color="#ff0000">此功能会对系统分区进行操作，使用此功能前，请确保你知道自己在干什么，如果刷错分区，会有很大概率导致设备无法正常启动。</slice>
+        </slices>
+    </text>

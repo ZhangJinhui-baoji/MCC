@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/module_control/feas" />
+<group title="以下设置为手动开启FEAS，不需要刷入模块也可设置&#13;&#10;">
+    <text>
+        <slices>
+        <slice size="12" color="#ff0000">注意：&#13;&#10;可能会永久生效，切勿在非游戏场景下开启。可以用来检测开启状态和是否支持FEAS！</slice>
+        </slices>
+    </text>
+    <switch shell="hidden" visible="run mtk.sh" title="FPSGO Enable" desc="根据实时帧率抑制或提升性能，以减少耗电或提高帧率稳定性。但开启此特性，可能会出现持续的小幅度掉帧">
+        <get>cat /sys/kernel/fpsgo/common/fpsgo_enable</get>
+        <set>source $START_DIR/kr-script/module_control/feas/mtk_feas.sh; set_fpsgo</set>
+        <summary sh="run summary_mtk_fpsgo_enable.sh" />
+    </switch>
+    <switch shell="hidden" visible="run mtk.sh" title="Perfmgr Enable" desc="FEAS通过Perfmgr实现，启用该特性可以在某些游戏中大幅降低功耗。">
+        <get>
+            perfmgr=/sys/module/mtk_fpsgo/parameters/perfmgr_enable
+            pandora_feas=/sys/module/perfmgr_mtk/parameters/perfmgr_enable
+            if [[ -f $pandora_feas ]]; then
+              perfmgr=$pandora_feas
+            fi
+            cat $perfmgr
+        </get>
+        <set>source $START_DIR/kr-script/module_control/feas/mtk_feas.sh; set_perfmgr</set>
+        <summary sh="run summary_mtk_perfmgr_enable.sh" />
+    </switch>
+    <switch shell="hidden" visible="run qualcomm.sh" title="Perfmgr Enable" desc="FEAS通过Perfmgr实现，启用该特性可以在某些游戏中大幅降低功耗。">
+        <get>cat /sys/module/perfmgr/parameters/perfmgr_enable</get>
+        <set>run qualcomm_feas.sh</set>
+        <summary sh="run summary_qualcomm_perfmgr_enable.sh" />
+    </switch>
+</group>
+<group title="以下设置必须刷入FEASHelper模块才会生效&#13;&#10;">
+	<switch shell="hidden" title="performance调速器" desc-sh="echo 是否在游戏内开启performance调速器">
+		<get>run get_on-off.sh</get>
+		<set>run set_on-off.sh</set>
+	</switch>
+</group>
+<group id="app_list">
+        <action reload="app_list" shell="hidden">
+            <title>开启feas的应用</title>
+            <desc>配置开启feas的(应用)名单</desc>
+            <param name="apps" type="app" title="请选择你想要开启的应用，选择后使用下一个功能进行配置。" desc="点击确定后其它应用的配置可能会被清除，需要重新配置" multiple="multiple" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' /data/feas.conf" />
+            <set>run apps.sh</set>
+		<summary sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' /data/feas.conf" />
+        </action>
+        <action reload="app_list" shell="hidden">
+            <title>设置应用帧率</title>
+            <desc>先使用上面的功能添加包名，然后再进行设置</desc>
+            <params>
+                <param name="app_package_name" title="选择应用包名"
+                    options-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' /data/feas.conf" />
+            <param
+                name="target_fps"
+                type="seekbar"
+                min="1"
+                max="120"
+                title="尽量声明游戏运行帧率"
+                desc="">
+            </param>
+            </params>
+            <set>run set_rules.sh</set>
+        <summary sh="grep -E '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*' /data/feas.conf" />
+        </action>
+</group>
+<group>
+        <page
+            config="settings.xml"
+            title="其他设置">
+        </page>
+</group>

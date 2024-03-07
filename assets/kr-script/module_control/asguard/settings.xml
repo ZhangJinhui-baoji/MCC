@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="模块与作者">
+    <action
+        shell="hidden"
+        desc="点击打开模块作者的酷安主页"
+        title="酷安：@沍澤venmzvi">
+        <set>run coolapk.sh</set>
+    </action>
+</group>
+<group>
+	<action>
+		<title>查看详细配置内容</title>
+		<set>
+			if [ -f "/sdcard/Android/ASGuard.conf" ]; then
+				cat "/sdcard/Android/ASGuard.conf"
+			else
+				echo "没有配置文件"
+			fi
+		</set>
+	</action>
+	<action>
+		<title>查看log</title>
+		<set>
+			if [[ -f "/sdcard/Android/log_ASG.txt" ]]; then
+				cat "/sdcard/Android/log_ASG.txt"
+			else
+				echo "未发现log"
+			fi
+		</set>
+	</action>
+	<action>
+		<title>查看过滤开关</title>
+		<set>
+			source "/sdcard/Android/ASGuard.conf"
+			if [[ -n $(echo ${exclude}) ]]; then
+				echo &#34;${exclude}&#34; | sed "/^$/d"
+			else
+				echo "未发现"
+			fi
+		</set>
+	</action>
+</group>
+<group>
+	<action>
+		<title>删除log</title>
+		<set>
+			if [[ -f "/sdcard/Android/log_ASG.txt" ]]; then
+				rm "/sdcard/Android/log_ASG.txt"
+				echo "已删除"
+			else
+				echo "无log文件"
+			fi
+		</set>
+	</action>
+</group>

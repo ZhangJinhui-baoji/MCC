@@ -1,0 +1,1 @@
+sed -i "s/^\* .*/\* $default_rule/" /sdcard/Android/yc/uperf/perapp_powermode.txt
