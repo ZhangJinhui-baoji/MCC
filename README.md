@@ -2,7 +2,7 @@
 一个可视化控制Magisk模块配置文件的应用
 
 ## 介绍
-APP是由helloklf（酷安：嘟嘟斯基）提供的PIO框架二次创作而来，利用shell代码配合PIO框架的可视化界面，旨在于能够轻松修改Magisk模块配置文件，免去繁琐的操作，可视化模块功能，让模块功能看起来更加一目了然。
+APP是由 [helloklf](https://github.com/helloklf)（酷安：[嘟嘟斯基](http://www.coolapk.com/u/734809)）提供的PIO框架二次创作而来，利用shell代码配合PIO框架的可视化界面，旨在于能够轻松修改Magisk模块配置文件，免去繁琐的操作，可视化模块功能，让模块功能看起来更加一目了然。
 
 ## 所支持控制的Magisk模块
 
@@ -42,7 +42,4 @@ APP是由helloklf（酷安：嘟嘟斯基）提供的PIO框架二次创作而来
 
 ## 其他相关
 
-[PIO框架](https://github.com/helloklf/kr-scripts)｜
-[Scene](https://github.com/helloklf/vtools)｜
-[Scene官网](http://vtools.omarea.com)｜
-[PIO和Scene作者](https://github.com/helloklf)
+[PIO](https://github.com/helloklf/kr-scripts)｜[Scene](https://github.com/helloklf/vtools)｜[Scene官网](http://vtools.omarea.com)
